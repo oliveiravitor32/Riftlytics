@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock3, Sword, XCircle } from "lucide-react";
+import { CheckCircle2, Clock3, Sword, XCircle } from 'lucide-react';
 
 import {
   Card,
@@ -6,14 +6,16 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import Link from "next/link";
+} from './ui/card';
+import Link from 'next/link';
 
-export type MatchResult = "win" | "loss";
+export type MatchResult = 'win' | 'loss';
 
 export type GameResumeMatch = {
+  matchId?: string;
+  playedAt?: string;
   result: MatchResult;
-  playerSide: "blue" | "red";
+  playerSide: 'blue' | 'red';
   playerName: string;
   champion: string;
   championImage: string;
@@ -44,15 +46,15 @@ type GameResumeCardProps = {
 };
 
 function resultMeta(result: MatchResult) {
-  return result === "win"
+  return result === 'win'
     ? {
-        label: "Win",
-        tone: "border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+        label: 'Win',
+        tone: 'border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
         icon: CheckCircle2,
       }
     : {
-        label: "Loss",
-        tone: "border-rose-500/20 bg-rose-500/10 text-rose-700 dark:text-rose-300",
+        label: 'Loss',
+        tone: 'border-rose-500/20 bg-rose-500/10 text-rose-700 dark:text-rose-300',
         icon: XCircle,
       };
 }
@@ -90,10 +92,10 @@ export default function GameResumeCard({ match }: GameResumeCardProps) {
   const meta = resultMeta(match.result);
   const ResultIcon = meta.icon;
   const blueSideTeam =
-    match.playerSide === "blue" ? match.allies : match.enemies;
-  const redSideTeam = match.playerSide === "red" ? match.allies : match.enemies;
+    match.playerSide === 'blue' ? match.allies : match.enemies;
+  const redSideTeam = match.playerSide === 'red' ? match.allies : match.enemies;
 
-  const kdaParts = match.kda.split("/").map(Number);
+  const kdaParts = match.kda.split('/').map(Number);
   const kdaValue =
     kdaParts[1] === 0
       ? kdaParts[0] + kdaParts[2]
@@ -106,12 +108,12 @@ export default function GameResumeCard({ match }: GameResumeCardProps) {
           <CardTitle>{match.queue}</CardTitle>
           <CardDescription className="flex items-center gap-1 rounded-md border border-border bg-background/80 px-2 py-0.5">
             <Clock3 className="size-3" />
-            {match.duration} - 1 hora atrás
+            {match.duration} - {match.playedAt ?? '1 hora atrás'}
           </CardDescription>
           <span
             className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold ${meta.tone}`}
           >
-            {match.lp > 0 ? "+" : ""}
+            {match.lp > 0 ? '+' : ''}
             {match.lp} PDL
           </span>
         </div>

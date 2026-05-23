@@ -1,11 +1,11 @@
-import Logo from "../../logo";
-import { Field } from "@/src/components/ui/field";
+import Logo from '../../logo';
+import { Field } from '@/src/components/ui/field';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/src/components/ui/input-group";
-import { SearchIcon } from "lucide-react";
+} from '@/src/components/ui/input-group';
+import { SearchIcon } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -13,23 +13,24 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/src/components/ui/select";
-import ThemeToggle from "../../theme-toggle";
-import NavMenu from "./nav-menu";
+} from '@/src/components/ui/select';
+import ThemeToggle from '../../theme-toggle';
+import NavMenu from './nav-menu';
 
 export default function Header() {
   return (
-    <header className="border-b border-border bg-background sticky top-0 z-40">
-      <section className="flex justify-between items-center py-2 max-w-7xl mx-auto">
-        <div className="flex-1">
-          <Logo />
-        </div>
-        <Field className="flex flex-1 flex-row w-auto gap-0">
+    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur-xl">
+      <section className="mx-auto grid max-w-7xl gap-4 px-4 py-4 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center">
+        <Logo />
+        <Field className="flex w-full flex-row gap-0 rounded-full border border-border bg-card/80 p-1 shadow-sm">
           <Select defaultValue="BR">
-            <SelectTrigger className="w-full max-w-48 rounded-tr-none rounded-br-none">
+            <SelectTrigger className="h-11 w-full max-w-28 rounded-full rounded-r-none border-0 bg-transparent px-4 text-sm text-foreground shadow-none ring-0 focus:ring-0">
               <SelectValue placeholder="Região" />
             </SelectTrigger>
-            <SelectContent position="popper">
+            <SelectContent
+              position="popper"
+              className="border-border bg-popover text-popover-foreground"
+            >
               <SelectGroup>
                 <SelectItem value="BR">BR</SelectItem>
                 <SelectItem value="20">NA</SelectItem>
@@ -40,22 +41,25 @@ export default function Header() {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <InputGroup className="rounded-tl-none rounded-bl-none">
+          <InputGroup className="rounded-none border-0 bg-transparent">
             <InputGroupInput
-              className="w-md"
+              className="h-11 w-full border-0 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus-visible:ring-0"
               id="inline-start-input"
               placeholder="Invocador + #BR1"
             />
-            <InputGroupAddon align="inline-end">
+            <InputGroupAddon
+              align="inline-end"
+              className="border-0 bg-transparent"
+            >
               <SearchIcon className="text-muted-foreground" />
             </InputGroupAddon>
           </InputGroup>
         </Field>
-        <div className="flex justify-end flex-1">
+        <div className="flex items-center justify-end">
           <ThemeToggle />
         </div>
       </section>
-      <section className="flex justify-center mb-1">
+      <section className="mx-auto flex max-w-7xl justify-center px-4 pb-4">
         <NavMenu />
       </section>
     </header>

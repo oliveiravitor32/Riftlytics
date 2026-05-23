@@ -1,19 +1,14 @@
-import Link from "next/link";
+import Link from 'next/link';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "../../ui/navigation-menu";
+} from '../../ui/navigation-menu';
 
 export default function NavMenu() {
-  const navItems = [
-    "Início",
-    "Campeões",
-    "Top jogadores",
-    "Dados estatísticos",
-  ];
+  const navItems = ['Dá duo?', 'Dados estatísticos'];
 
   return (
     <NavigationMenu>

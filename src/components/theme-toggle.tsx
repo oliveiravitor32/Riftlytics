@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
-import { Button } from "./ui/button";
-import { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import { Sun, Moon } from 'lucide-react';
+import { Button } from './ui/button';
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -16,17 +16,17 @@ export default function ThemeToggle() {
 
   if (!mounted) return null;
 
-  const isDark = resolvedTheme === "dark";
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <Button
       variant="outline"
       size="icon"
       aria-label="Mudar tema de cores"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="p-2 rounded-lg border border-border hover:bg-secondary transition-colors"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className="size-11 rounded-full border-border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
     >
-      {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
     </Button>
   );
 }
